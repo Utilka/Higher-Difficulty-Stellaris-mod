@@ -1,0 +1,30 @@
+# Triggers when the game starts
+on_game_start = {
+	events = {
+		moaralloys.1
+	}
+}
+
+# No scope, like on_game_start
+on_yearly_pulse = {
+	events = {
+		moaralloys.1
+	}
+}
+
+# A country is created via create_country or create_rebels
+# This = created country
+# From = root of context where create_country/create_rebels happens
+on_country_created = {
+	events = {
+		moaralloys.11
+	}
+}
+
+# This = subject
+# From = subject's overlord
+on_becoming_subject = {
+	events = {
+		moaralloys.2
+	}
+}

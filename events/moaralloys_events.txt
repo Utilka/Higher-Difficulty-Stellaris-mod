@@ -1,0 +1,93 @@
+namespace = moaralloys
+event = {
+	id = moaralloys.1
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		any_country = {
+			is_country_type = default
+			is_ai = yes
+		}
+	}
+	immediate = {
+		every_country = {
+			limit = {
+				is_country_type = default
+				is_ai = yes
+				NOT = {
+					has_modifier = "Moar_Alloys"
+				}
+				NAND = {
+					exists = overlord
+					overlord = {
+						is_ai = no
+					}
+				}
+			}
+			add_modifier = {
+				modifier = "Moar_Alloys"
+				days = -1
+			}
+		}
+		every_country = {
+			limit = {
+				is_country_type = default
+				has_modifier = "Moar_Alloys"
+				OR = {
+					is_ai = no
+					AND = {
+						exists = overlord
+						overlord = {
+							is_ai = no
+						}
+					}
+				}
+			}
+			remove_modifier = "Moar_Alloys"
+		}
+	}
+}
+
+event = {
+	# remove buff from AI country when player subjugates that AI counrty
+	id = moaralloys.2
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		any_country = {
+			is_country_type = default
+			exists = overlord
+			overlord = {
+				is_ai = no
+			}
+		}
+	}
+	immediate = {
+		remove_modifier = "Moar_Alloys"
+	}
+}
+
+event = {
+	# give AI buffs when new countries are created
+	id = moaralloys.11
+	hide_window = yes
+	is_triggered_only = yes
+	trigger = {
+		any_country = {
+			is_country_type = default
+			is_ai = yes
+			NAND = {
+				exists = overlord
+				overlord = {
+					is_ai = no
+				}
+			}
+		}
+	}
+	immediate = {
+		add_modifier = {
+			modifier = "Moar_Alloys"
+			days = -1
+		}
+	}
+}
